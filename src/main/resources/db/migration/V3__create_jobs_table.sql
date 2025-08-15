@@ -2,14 +2,14 @@ CREATE TABLE jobs
 (
     id               BIGSERIAL PRIMARY KEY,
     position_name    VARCHAR(255),
-    job_page_url     VARCHAR(500),
+    job_page_url     VARCHAR(500) UNIQUE,
     labor_function   VARCHAR(255),
     location         VARCHAR(255),
     posted_date_unix BIGINT,
     description      TEXT,
-    status           VARCHAR(50),
+    status           VARCHAR(50) DEFAULT 'PENDING',
     company_id       BIGINT REFERENCES companies (id),
-    created_at       TIMESTAMP WITH TIME ZONE
+    created_at       TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE UNIQUE INDEX idx_jobs_job_page_url ON jobs (job_page_url);

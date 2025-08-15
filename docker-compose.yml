@@ -12,5 +12,19 @@ services:
     volumes:
       - db_data:/var/lib/postgresql/data
 
+  app:
+    build: .
+    container_name: job_scraper_app
+    ports:
+      - "8080:8080"
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_NAME: js_database
+      DB_USERNAME: js_user
+      DB_PASSWORD: js_password
+    depends_on:
+      - db
+
 volumes:
   db_data:

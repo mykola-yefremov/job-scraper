@@ -4,8 +4,8 @@ CREATE TABLE companies
 (
     id          BIGSERIAL PRIMARY KEY,
     title       VARCHAR(255)             NOT NULL,
-    website_url VARCHAR(500)             NOT NULL,
-    logo_url    VARCHAR(500)             NOT NULL,
+    website_url VARCHAR(500),
+    logo_url    VARCHAR(500),
     created_at  TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
