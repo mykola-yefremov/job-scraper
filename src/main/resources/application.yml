@@ -1,0 +1,50 @@
+dbHost: ${DB_HOST:localhost}
+dbPort: ${DB_PORT:5432}
+dbName: ${DB_NAME:js_database}
+dbUsername: ${DB_USERNAME:js_user}
+dbPassword: ${DB_PASSWORD:js_password}
+dbApplicationName: ${DB_APP_NAME:app_job_scraper}
+dbSchema: ${DB_SCHEMA:app_job_scraper}
+
+spring:
+  application:
+    name: job_scraper
+    version: 0.0.1
+    description: Job scraper for jobs.techstars.com
+  datasource:
+    url: jdbc:postgresql://${dbHost}:${dbPort}/${dbName}?ApplicationName=${dbApplicationName}
+    username: ${dbUsername}
+    password: ${dbPassword}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 5
+  flyway:
+    schemas: ${dbSchema}
+    enabled: true
+  jpa:
+    properties:
+      hibernate:
+        default_schema: ${dbSchema}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+  health:
+    diskspace:
+      enabled: false
+  info:
+    env:
+      enabled: true
+  server:
+    port: 9090
+
+info:
+  app:
+    name: ${spring.application.name}
+    version: ${spring.application.version}
+    description: ${spring.application.description}

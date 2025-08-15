@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:17-alpine
+    container_name: job_scraper_db
+    restart: always
+    environment:
+      POSTGRES_DB: js_database
+      POSTGRES_USER: js_user
+      POSTGRES_PASSWORD: js_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
